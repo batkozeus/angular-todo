@@ -1,0 +1,27 @@
+<section class="todoapp">
+    <mat-toolbar>
+        <h1 class="todoapp__header">Todos</h1>
+    </mat-toolbar>
+    <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <mat-form-field>
+                <input matInput placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <section class="todoapp__list" *ngIf="todos.length > 0">
+                <mat-list>
+                    <mat-list-item *ngFor="let todo of todos" [class.completed]="todo.complete">
+                        <div class="todoapp__list-element">
+                            <mat-checkbox (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+                                {{todo.title}}
+                            </mat-checkbox>
+                            <button mat-raised-button color="warn" (click)="removeTodo(todo)">Delete</button>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </mat-list>
+            </section>
+        </mat-grid-tile>
+    </mat-grid-list>
+</section>

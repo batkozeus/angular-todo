@@ -1,0 +1,22 @@
+.todoapp {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+
+    &__header {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+
+    &__list {
+        width: 100%;
+
+        &-element {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
