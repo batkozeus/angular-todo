@@ -2,11 +2,11 @@
     <mat-toolbar>
         <h1 class="todoapp__header">Todos</h1>
     </mat-toolbar>
-    <mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-list cols="2">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-form-field>
-                <input matInput placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
-            </mat-form-field>
+            <app-todo-editor
+                (submitted)="addTodo($event)">>
+            </app-todo-editor>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
             <section class="todoapp__list" *ngIf="todos.length > 0">
@@ -24,4 +24,5 @@
             </section>
         </mat-grid-tile>
     </mat-grid-list>
+    TODOS: {{todos.length}}
 </section>

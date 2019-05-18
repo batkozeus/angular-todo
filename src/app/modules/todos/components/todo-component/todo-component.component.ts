@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TodoDataService } from 'modules/todos/services/todo-data.service';
 import { Todo } from 'modules/todos/classes/todo';
 
+import { ITodoEditorOutput } from 'modules/todos/components/todo-editor/todo-editor.component';
+
 @Component({
     selector: 'app-todo-component',
     templateUrl: './todo-component.component.html',
@@ -12,16 +14,17 @@ export class TodoComponentComponent {
 
     constructor(private todoDataService: TodoDataService) {}
 
-    addTodo() {
+    addTodo(formInfo: ITodoEditorOutput) {
+        Object.assign(this.newTodo, formInfo);
         this.todoDataService.addTodo(this.newTodo);
         this.newTodo = new Todo();
     }
 
-    toggleTodoComplete(todo) {
+    toggleTodoComplete(todo: Todo) {
         this.todoDataService.toggleTodoComplete(todo);
     }
 
-    removeTodo(todo) {
+    removeTodo(todo: Todo) {
         this.todoDataService.deleteTodoById(todo.id);
     }
 

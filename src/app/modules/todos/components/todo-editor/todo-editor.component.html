@@ -1,0 +1,28 @@
+<form
+    [formGroup]="todoForm"
+    (ngSubmit)="onSubmit()"
+    class="todo-editor"
+>
+    <mat-form-field>
+        <input matInput placeholder="Title:" autocomplete="off" formControlName="title">
+        <mat-error *ngIf="title.invalid">Required or max length 50</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Description:" autocomplete="off" formControlName="description">
+        <mat-error *ngIf="description.invalid">Required or max length 50</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="date" placeholder="End date:" autocomplete="off" formControlName="endDate">
+        <mat-error *ngIf="endDate.invalid">Required or old date</mat-error>
+    </mat-form-field>
+
+    <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!todoForm.valid"
+        class="todo-editor__submit-button"
+    >
+        Submit
+    </button>
+</form>
