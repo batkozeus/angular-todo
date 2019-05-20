@@ -1,22 +1,12 @@
-.todoapp {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
+.todoapp__list {
+    width: 100%;
 
-    &__header {
-        flex: 1 1 auto;
-        text-align: center;
+    .mat-list-item {
+        width: 100%;
+        height: auto;
     }
 
-    &__list {
-        width: 100%;
-
-        &-element {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    &__element {
+        width: 90%;
     }
 }

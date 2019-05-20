@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Todo } from 'modules/todos/classes/todo';
 
 @Component({
     selector: 'app-todo-item',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
     styleUrls: ['./todo-item.component.scss']
 })
 export class TodoItemComponent {
+    @Input() todo: Todo;
+    @Output() deleted = new EventEmitter<number>();
+    @Output() clickedOnCheckBox = new EventEmitter<Todo>();
 
-    constructor() { }
+    onDeleteTodo(id: number) {
+        this.deleted.emit(id);
+    }
 
+    onCheckBoxClick(todo: Todo) {
+        this.clickedOnCheckBox.emit(todo);
+    }
 }

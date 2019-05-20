@@ -9,19 +9,22 @@
             </app-todo-editor>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <section class="todoapp__list" *ngIf="todos.length > 0">
-                <mat-list>
-                    <mat-list-item *ngFor="let todo of todos" [class.completed]="todo.complete">
-                        <div class="todoapp__list-element">
-                            <mat-checkbox (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-                                {{todo.title}}
-                            </mat-checkbox>
-                            <button mat-raised-button color="warn" (click)="removeTodo(todo)">Delete</button>
-                        </div>
-                        <mat-divider></mat-divider>
-                    </mat-list-item>
-                </mat-list>
-            </section>
+            <mat-list class="todoapp__list" *ngIf="todos.length > 0">
+                <mat-list-item *ngFor="let todo of todos" [class.completed]="todo.complete" class="todoapp__list__item">
+                    <!-- <div class="todoapp__list-element">
+                        <mat-checkbox (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
+                            {{todo.title}}
+                        </mat-checkbox>
+                        <button mat-raised-button color="warn" (click)="removeTodo(todo)">Delete</button>
+                    </div> -->
+                    <app-todo-item
+                        [todo]="todo"
+                        (deleted)="removeTodo($event)"
+                        (clickedOnCheckBox)="toggleTodoComplete($event)"
+                        class="todoapp__list__element">
+                    </app-todo-item>
+                </mat-list-item>
+            </mat-list>
         </mat-grid-tile>
     </mat-grid-list>
     TODOS: {{todos.length}}

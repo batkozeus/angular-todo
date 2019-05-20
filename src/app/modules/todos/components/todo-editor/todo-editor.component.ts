@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 
 import { dateValidator } from 'commons/validators/date-validator.directive'
 
@@ -16,6 +16,7 @@ export interface ITodoEditorOutput {
 })
 export class TodoEditorComponent implements OnInit {
     @Output() submitted = new EventEmitter<ITodoEditorOutput>();
+    @ViewChild('f') throughChildTodoForm: NgForm;
     todoForm: FormGroup;
 
     ngOnInit(): void {
@@ -48,7 +49,10 @@ export class TodoEditorComponent implements OnInit {
     }
 
     onSubmit() {
-        this.submitted.emit(this.todoForm.value);
+        if (this.todoForm.valid) {
+            this.submitted.emit(this.todoForm.value);
+            this.throughChildTodoForm.resetForm();
+        }
     }
 
 }

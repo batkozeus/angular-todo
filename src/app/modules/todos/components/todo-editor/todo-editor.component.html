@@ -2,6 +2,7 @@
     [formGroup]="todoForm"
     (ngSubmit)="onSubmit()"
     class="todo-editor"
+    #f="ngForm"
 >
     <mat-form-field>
         <input matInput placeholder="Title:" autocomplete="off" formControlName="title">

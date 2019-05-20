@@ -1,6 +1,13 @@
-<div class="todoapp__list-element">
-    <mat-checkbox (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-        {{todo.title}}
-    </mat-checkbox>
-    <button mat-raised-button color="warn" (click)="removeTodo(todo)">Delete</button>
-</div>
+<mat-card class="todoapp__todo-item">
+    <mat-card-header>
+        <mat-card-title>{{todo.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-checkbox (click)="onCheckBoxClick(todo)" [checked]="todo.complete">
+            {{todo.description}}
+        </mat-checkbox>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="warn" (click)="onDeleteTodo(todo.id)">Delete</button>
+    </mat-card-actions>
+</mat-card>
