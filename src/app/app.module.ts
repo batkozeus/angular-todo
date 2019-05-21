@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './commons/commonModules/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MyOwnCustomMaterialModule } from './modules/material-design/material-design.module';
+import { MyOwnCustomMaterialModule } from './commons/commonModules/material-design.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TodoComponentComponent } from './modules/todos/components/todo-component/todo-component.component';
@@ -25,6 +26,7 @@ imports: [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MyOwnCustomMaterialModule
 ],
     providers: [

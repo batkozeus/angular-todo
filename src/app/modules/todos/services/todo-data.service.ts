@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Todo } from 'modules/todos/classes/todo';
+import { JsonDataService } from './json-data.service';
 
 @Injectable({
     providedIn: 'root'
@@ -8,7 +9,13 @@ export class TodoDataService {
     lastId: number = 0;
     todos: Todo[] = [];
 
-    constructor() { }
+    constructor(
+        private appSettingsService : JsonDataService,
+    ) {
+        this.appSettingsService.getJSON().subscribe(data => {
+            this.todos = data;
+        });
+    }
 
     addTodo(todo: Todo): TodoDataService {
         if (!todo.id) {

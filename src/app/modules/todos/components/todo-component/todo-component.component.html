@@ -2,30 +2,34 @@
     <mat-toolbar>
         <h1 class="todoapp__header">Todos</h1>
     </mat-toolbar>
-    <mat-grid-list cols="2">
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <div class="todoapp__main">
+        <div class="todoapp__section">
             <app-todo-editor
                 (submitted)="addTodo($event)">>
             </app-todo-editor>
-        </mat-grid-tile>
-        <mat-grid-tile [colspan]="1" [rowspan]="1">
-            <mat-list class="todoapp__list" *ngIf="todos.length > 0">
-                <mat-list-item *ngFor="let todo of todos" [class.completed]="todo.complete" class="todoapp__list__item">
-                    <!-- <div class="todoapp__list-element">
-                        <mat-checkbox (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-                            {{todo.title}}
-                        </mat-checkbox>
-                        <button mat-raised-button color="warn" (click)="removeTodo(todo)">Delete</button>
-                    </div> -->
-                    <app-todo-item
-                        [todo]="todo"
-                        (deleted)="removeTodo($event)"
-                        (clickedOnCheckBox)="toggleTodoComplete($event)"
-                        class="todoapp__list__element">
-                    </app-todo-item>
-                </mat-list-item>
-            </mat-list>
-        </mat-grid-tile>
-    </mat-grid-list>
+        </div>
+        <div class="todoapp__section">
+            <div class="todoapp__todo-container">
+                <mat-button-toggle-group #todoType="matButtonToggleGroup" class="todoapp__toggle-group">
+                    <mat-button-toggle value="all" (click)="setTodoType(todoType.value)" class="todoapp__toggle-buttons">
+                        All TODOs
+                    </mat-button-toggle>
+                    <mat-button-toggle value="checked" (click)="setTodoType(todoType.value)" class="todoapp__toggle-buttons">
+                        Checked TODOs
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+                <mat-list class="todoapp__list" *ngIf="todos.length > 0">
+                    <mat-list-item *ngFor="let todo of todos" [class.completed]="todo.complete" class="todoapp__list__item">
+                        <app-todo-item
+                            [todo]="todo"
+                            (deleted)="removeTodo($event)"
+                            (clickedOnCheckBox)="toggleTodoComplete($event)"
+                            class="todoapp__list__element">
+                        </app-todo-item>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+        </div>
+    </div>
     TODOS: {{todos.length}}
 </section>

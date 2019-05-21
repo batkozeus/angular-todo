@@ -1,13 +1,15 @@
 <mat-card class="todoapp__todo-item">
     <mat-card-header>
         <mat-card-title>{{todo.title}}</mat-card-title>
+        <mat-card-subtitle>Ends {{todo.endDate}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <mat-checkbox (click)="onCheckBoxClick(todo)" [checked]="todo.complete">
+        <mat-checkbox (change)="onCheckBoxClick(todo)" [checked]="todo.complete">
             {{todo.description}}
         </mat-checkbox>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="warn" (click)="onDeleteTodo(todo.id)">Delete</button>
+        <button mat-raised-button color="accent" (click)="onEditTodo(todo.id)">Edit</button>
     </mat-card-actions>
 </mat-card>

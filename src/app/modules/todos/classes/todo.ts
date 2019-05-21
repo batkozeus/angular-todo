@@ -11,9 +11,9 @@ export class Todo {
     title: string;
     description: string;
     endDate: Date;
-    complete: boolean = false;
+    complete: boolean;
 
-    constructor(values: ITodoClassObject = {} as ITodoClassObject) {
+    constructor(values: ITodoClassObject = {complete: false} as ITodoClassObject) {
         this.id = values.id;
         this.title = values.title;
         this.description = values.description;

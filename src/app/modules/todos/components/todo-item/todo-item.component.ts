@@ -9,10 +9,15 @@ import { Todo } from 'modules/todos/classes/todo';
 export class TodoItemComponent {
     @Input() todo: Todo;
     @Output() deleted = new EventEmitter<number>();
+    @Output() edited = new EventEmitter<number>();
     @Output() clickedOnCheckBox = new EventEmitter<Todo>();
 
     onDeleteTodo(id: number) {
         this.deleted.emit(id);
+    }
+
+    onEditTodo(id: number) {
+        this.edited.emit(id);
     }
 
     onCheckBoxClick(todo: Todo) {
