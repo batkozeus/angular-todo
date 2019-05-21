@@ -27,6 +27,12 @@
                             class="todoapp__list__element">
                         </app-todo-item>
                     </mat-list-item>
+                    <mat-paginator *ngIf="todoListType === 'all'"
+                        [length]="pages"
+                        pageSize=5
+                        hidePageSize
+                        (page)="turnPage($event)">
+                    </mat-paginator>
                 </mat-list>
             </div>
         </div>
