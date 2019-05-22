@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material';
 import { TodoDataService } from 'modules/todos/services/todo-data.service';
 
 import { Todo } from 'modules/todos/classes/todo';
+import { ITodoCreatorOutput } from 'modules/todos/components/todo-creator/todo-creator.component';
 import { ITodoEditorOutput } from 'modules/todos/components/todo-editor/todo-editor.component';
 
 @Component({
@@ -15,12 +16,14 @@ export class TodoComponentComponent {
     newTodo: Todo = new Todo();
     todoListType: 'all' | 'checked' = 'all';
     currentPage: number = 0;
+    editorType: 'create' | 'edit' = 'create';
+    currentTodo: Todo;
 
     constructor(
         private todoDataService: TodoDataService,
     ) {}
 
-    addTodo(formInfo: ITodoEditorOutput) {
+    addTodo(formInfo: ITodoCreatorOutput) {
         Object.assign(this.newTodo, formInfo);
         this.todoDataService.addTodo(this.newTodo);
         this.newTodo = new Todo();
@@ -28,6 +31,16 @@ export class TodoComponentComponent {
 
     toggleTodoComplete(todo: Todo) {
         this.todoDataService.toggleTodoComplete(todo);
+    }
+
+    openEditor(todoId: number) {
+        this.currentTodo = this.todoDataService.getTodoById(todoId);
+        this.editorType = 'edit';
+    }
+
+    editTodo(todoObject: ITodoEditorOutput) {
+        this.todoDataService.editTodoById(todoObject);
+        this.editorType = 'create';
     }
 
     removeTodo(todoId: number) {

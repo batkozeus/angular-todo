@@ -3,9 +3,13 @@
         <h1 class="todoapp__header">Todos</h1>
     </mat-toolbar>
     <div class="todoapp__main">
-        <div class="todoapp__section">
-            <app-todo-editor
-                (submitted)="addTodo($event)">>
+        <div class="todoapp__section" [ngSwitch]="editorType">
+            <app-todo-creator *ngSwitchCase="'create'"
+                (created)="addTodo($event)">>
+            </app-todo-creator>
+            <app-todo-editor *ngSwitchCase="'edit'"
+                [currentTodo]="currentTodo"
+                (edited)="editTodo($event)">>
             </app-todo-editor>
         </div>
         <div class="todoapp__section">
@@ -23,6 +27,7 @@
                         <app-todo-item
                             [todo]="todo"
                             (deleted)="removeTodo($event)"
+                            (edited)="openEditor($event)"
                             (clickedOnCheckBox)="toggleTodoComplete($event)"
                             class="todoapp__list__element">
                         </app-todo-item>

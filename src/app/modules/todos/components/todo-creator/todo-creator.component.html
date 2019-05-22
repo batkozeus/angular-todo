@@ -1,8 +1,8 @@
 <form
     [formGroup]="todoForm"
-    (ngSubmit)="onSubmit()"
-    class="todo-editor"
-    #todoEditor="ngForm"
+    (ngSubmit)="onCreate()"
+    class="todo-creator"
+    #todoCreator="ngForm"
 >
     <mat-form-field>
         <input matInput placeholder="Title:" autocomplete="off" formControlName="title">
@@ -19,11 +19,11 @@
 
     <button
         mat-raised-button
-        color="accent"
+        color="primary"
         type="submit"
         [disabled]="!todoForm.valid"
-        class="todo-editor__submit-button"
+        class="todo-creator__edit-button"
     >
-        Edit
+        Create
     </button>
 </form>

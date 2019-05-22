@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from 'modules/todos/classes/todo';
 import { JsonDataService } from './json-data.service';
+import { ITodoEditorOutput } from 'modules/todos/components/todo-editor/todo-editor.component';
 
 @Injectable({
     providedIn: 'root'
@@ -50,9 +51,19 @@ export class TodoDataService {
             .pop();
     }
     
-    toggleTodoComplete(todo: Todo){
-        let updatedTodo = this.updateTodoById(todo.id, {
+    toggleTodoComplete(todo: Todo) {
+        const updatedTodo = this.updateTodoById(todo.id, {
             complete: !todo.complete
+        });
+        return updatedTodo;
+    }
+
+    editTodoById(todoObject: ITodoEditorOutput) {
+        const { id, formValue } = todoObject;
+        const updatedTodo = this.updateTodoById(id, {
+            title: formValue.title,
+            description: formValue.description,
+            endDate: formValue.endDate
         });
         return updatedTodo;
     }

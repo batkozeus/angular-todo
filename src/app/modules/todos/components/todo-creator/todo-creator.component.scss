@@ -1,0 +1,10 @@
+.todo-creator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__edit-button {
+        width: 100px;
+    }
+}

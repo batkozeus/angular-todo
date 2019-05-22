@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TodoComponentComponent } from './modules/todos/components/todo-component/todo-component.component';
+import { TodoCreatorComponent } from './modules/todos/components/todo-creator/todo-creator.component';
 import { TodoEditorComponent } from './modules/todos/components/todo-editor/todo-editor.component';
 import { TodoItemComponent } from './modules/todos/components/todo-item/todo-item.component';
 
@@ -19,6 +20,7 @@ declarations: [
     TodoComponentComponent,
     TodoEditorComponent,
     TodoItemComponent,
+    TodoCreatorComponent,
 ],
 imports: [
     BrowserModule,
